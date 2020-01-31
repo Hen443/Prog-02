@@ -122,6 +122,8 @@ function draw() {
     for (var i in AmenakerArr) {
         AmenakerArr[i].utel();
     }
+    console.log(NorkerparArr);
+    
     for (var i in NorkerparArr) {
         NorkerparArr[i].generate()
     }

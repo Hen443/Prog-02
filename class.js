@@ -305,23 +305,32 @@ class Amenaker {
         var miHatXot = random(ameninch);
         if (ameninch) {
             if (matrix[ameninch[1][ameninch[0]]] == 1) {
+
                 for (var i in grassArr) {
-                    grassArr.splice(i, 1);
+                    if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
+                        grassArr.splice(i, 1);
+                    }
                 }
             }
             else if (matrix[ameninch[1][ameninch[0]]] == 2) {
                 for (var i in xotakerArr) {
-                    xotakerArr.splice(i, 1);
+                    if (this.x == xotakerArr[i].x && this.y == xotakerArr[i].y) {
+                        xotakerArr.splice(i, 1);
+                    }
                 }
             }
             else if (matrix[ameninch[1][ameninch[0]]] == 3) {
                 for (var i in GishatichArr) {
-                    GishatichArr.splice(i, 1);
+                    if (this.x == GishatichArr[i].x && this.y == GishatichArr[i].y) {
+                        GishatichArr.splice(i, 1);
+                    }
                 }
             }
             else if (matrix[ameninch[1][ameninch[0]]] == 4) {
                 for (var i in AmenakerArr) {
-                    AmenakerArr.splice(i, 1);
+                    if (this.x == AmenakerArr[i].x && this.y == AmenakerArr[i].y) {
+                        AmenakerArr.splice(i, 1);
+                    }
                 }
             }
             matrix[this.y][this.x] = 0;
