@@ -3,6 +3,7 @@ class Grass {
         this.x = x
         this.y = y
         this.multiply = 0;
+        this.index = 1;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -254,7 +255,7 @@ class GishatichEater {
         this.x = x;
         this.y = y;
         this.directions = [];
-        this.index = 6;
+        this.index = 4;
         this.energy = 10;
     }
 
@@ -461,7 +462,7 @@ class Vorsord {
 //         this.x = x;
 //         this.y = y;
 //         this.directions = [];
-//         this.index = 5;
+//         this.index = 6;
 //         this.energy = 100;
 //     }
 
@@ -562,7 +563,7 @@ class Vorsord {
 //         this.x = x;
 //         this.y = y;
 //         this.directions = [];
-//         this.index = 6;
+//         this.index = 7;
 //     }
 
 //     stanalNorKordinatner() {
