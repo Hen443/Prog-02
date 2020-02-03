@@ -4,9 +4,9 @@ var matrix = [
     [0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 2],
     [0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
     [1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0],
-    [1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0],
+    [1, 0, 0, 1, 1, 0, 5, 0, 0, 0, 1, 1, 1, 0, 0, 0, 4, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 3, 0, 0, 1, 0, 0],
     [1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0],
-    [1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 4, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 0, 1, 1, 1, 0, 5, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 4, 0, 1, 0, 1, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
     [1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0],
     [1, 0, 1, 1, 0, 2, 3, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
     [1, 1, 1, 0, 4, 0, 3, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0],
@@ -41,7 +41,7 @@ var grassArr = [];
 var xotakerArr = [];
 var GishatichArr = [];
 var GishatichEaterArr = []
-//var AmenakerArr = [];
+var VorsordArr = [];
 
 // var NorkerparArr = [];
 
@@ -63,17 +63,15 @@ function setup() {
                 var gishatich = (new Gishatich(x, y))
                 GishatichArr.push(gishatich);
 
-            } 
-            else if (matrix[y][x] == 4) {
+            } else if (matrix[y][x] == 4) {
                 var gishaticheat = (new GishatichEater(x, y))
                 GishatichEaterArr.push(gishaticheat);
 
-            } 
-            // else if (matrix[y][x] == 4) {
-            //     var amenaker = new Amenaker(x, y);
-            //     AmenakerArr.push(amenaker);
+            } else if (matrix[y][x] == 5) {
+                var vorsord = new Vorsord(x, y);
+                VorsordArr.push(vorsord);
 
-            // } 
+            }
             // else if (matrix[y][x] == 5) {
             //     var Norker = new NorKerpar(x, y);
             //     NorkerparArr.push(Norker);
@@ -105,16 +103,13 @@ function draw() {
             } else if (matrix[y][x] == 3) {
                 fill('red');
                 rect(x * side, y * side, side, side);
-            } 
-            else if (matrix[y][x] == 4) {
+            } else if (matrix[y][x] == 4) {
                 fill('blue');
                 rect(x * side, y * side, side, side);
-            } 
-
-            // else if (matrix[y][x] == 5) {
-            //     fill('black');
-            //     rect(x * side, y * side, side, side);
-            // }
+            } else if (matrix[y][x] == 5) {
+                fill('black');
+                rect(x * side, y * side, side, side);
+            }
 
             // else if (matrix[y][x] == 6) {
             //     fill('orange');
@@ -123,7 +118,7 @@ function draw() {
         }
 
     }
-    
+
 
     for (var i in grassArr) {
         grassArr[i].bazmanal();
@@ -137,15 +132,16 @@ function draw() {
         GishatichArr[i].utel();
     }
 
-    for (var i in GishatichEaterArr){
+    for (var i in GishatichEaterArr) {
         GishatichEaterArr[i].utel();
     }
 
-    // for (var i in AmenakerArr) {
-    //     AmenakerArr[i].utel();
-    // }
-    
+    for (var i in VorsordArr) {
+        VorsordArr[i].utel();
+    }
+
     // for (var i in NorkerparArr) {
     //     NorkerparArr[i].generate()
     // }
 }
+

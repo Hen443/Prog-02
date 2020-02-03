@@ -312,7 +312,7 @@ class GishatichEater {
             this.y = miHatXotaker[1];
             matrix[miHatXotaker[1]][miHatXotaker[0]] = 4;
             this.energy++;
-            // this.bazmanal();
+            this.bazmanal();
             for (var i in xotakerArr) {
                 if (this.x == xotakerArr[i].x && this.y == xotakerArr[i].y) {
                     xotakerArr.splice(i, 1);
@@ -366,6 +366,95 @@ class GishatichEater {
 
 }
 
+class Vorsord {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.directions = [];
+        this.index = 5;
+        this.energy = 100;
+    }
+    stanalNorKordinatner() {
+        this.directions = [
+            [this.x - 1, this.y - 1],
+            [this.x, this.y - 1],
+            [this.x + 1, this.y - 1],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
+            [this.x - 1, this.y + 1],
+            [this.x, this.y + 1],
+            [this.x + 1, this.y + 1]
+        ];
+    }
+
+    yntrelVandak(ch) {
+        var found = [];
+        for (var i in this.directions) {
+            var x = this.directions[i][0];
+            var y = this.directions[i][1];
+            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
+                if (matrix[y][x] == ch) {
+                    found.push(this.directions[i]);
+                }
+            }
+        }
+        return found;
+    }
+
+    sharjvel() {
+        this.stanalNorKordinatner();
+        var datark = this.yntrelVandak(0);
+        var norVandak = random(datark);
+        if (norVandak) {
+
+            matrix[this.y][this.x] = 0;
+            this.x = norVandak[0];
+            this.y = norVandak[1]
+            matrix[this.y][this.x] = 5;
+            this.energy -= 2;
+            this.mahanal();
+
+        }
+
+
+    }
+
+    utel() {
+        this.stanalNorKordinatner();
+        var xotaker = this.yntrelVandak(4);
+        var miHatXotaker = random(xotaker);
+        if (miHatXotaker) {
+            matrix[this.y][this.x] = 0;
+            this.x = miHatXotaker[0];
+            this.y = miHatXotaker[1];
+            matrix[miHatXotaker[1]][miHatXotaker[0]] = 5;
+            for (var i in GishatichEater) {
+                if (this.x == GishatichEater[i].x && this.y == GishatichEater[i].y) {
+                    GishatichEater.splice(i, 1);
+                }
+            }
+        } else {
+            this.sharjvel();
+        }
+    }
+    mahanal() {
+        if (this.energy == 0) {
+            for (var i in VorsordArr) {
+                if (this.x == VorsordArr[i].x && this.y == VorsordArr[i].y) {
+                    VorsordArr.splice(i, 1);
+                    matrix[this.y][this.x] = 0;
+                    // var verj = new Grass(this.x,this.y)   //
+                    // grassArr.push(verj)  // verj nor grass generator
+
+                }
+
+            }
+        }
+
+    }
+
+}
+
 
 // class Amenaker {
 //     constructor(x, y) {
@@ -405,8 +494,9 @@ class GishatichEater {
 
 //     utel() {
 //         this.stanalNorKordinatner();
-//         var ameninch = this.directions; // do with concat()
+//         var ameninch = this.yntrelVandak(1).concat(this.yntrelVandak(2)).concat(this.yntrelVandak(3)).concat(this.yntrelVandak(4)) // do with concat()
 //         var miHatXot = random(ameninch);
+//         console.log(miHatXot)
 //         // matrix[this.y][this.x] = 0;
 //         // this.x = miHatXot[0]
 //         // this.y = miHatXot[1]
@@ -417,27 +507,27 @@ class GishatichEater {
 //             this.y = miHatXot[1];
 //             matrix[miHatXot[1]][miHatXot[0]] = 5;
 
-//             if (matrix[miHatXot[0][miHatXot[1]]] == 1) {
+//             if (matrix[miHatXot[1][miHatXot[0]]] == 1) {
 //                 for (var i in grassArr) {
 //                     if (miHatXot[1] == grassArr[i].x && miHatXot[0] == grassArr[i].y) {
 
 //                         grassArr.splice(i, 1);
 //                     }
 //                 }
-//             } else if (matrix[miHatXot[0][miHatXot[1]]] == 2) {
+//             } else if (matrix[miHatXot[1][miHatXot[0]]] == 2) {
 //                 for (var i in xotakerArr) {
 //                     console.log(AmenakerArr)
 //                     if (this.x == xotakerArr[i].x && this.y == xotakerArr[i].y) {
 //                         xotakerArr.splice(i, 1);
 //                     }
 //                 }
-//             } else if (matrix[miHatXot[0][miHatXot[1]]] == 3) {
+//             } else if (matrix[miHatXot[1][miHatXot[0]]] == 3) {
 //                 for (var i in GishatichArr) {
 //                     if (this.x == GishatichArr[i].x && this.y == GishatichArr[i].y) {
 //                         GishatichArr.splice(i, 1);
 //                     }
 //                 }
-//             } else if (matrix[miHatXot[0][miHatXot[1]]] == 5) {
+//             } else if (matrix[miHatXot[1][miHatXot[0]]] == 4) {
 //                 for (var i in AmenakerArr) {
 //                     if (this.x == AmenakerArr[i].x && this.y == AmenakerArr[i].y) {
 //                         AmenakerArr.splice(i, 1);
@@ -553,6 +643,7 @@ class GishatichEater {
 // 342 row (question)
 // 334 332 row (matrix syntax)
 // 59 row (question)
+// 447 row (verj)
 // Grass - 1
 // Xotaker - 2
 // Gishatich - 3
